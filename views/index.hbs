@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <link href="css.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+  <header>
+    <ul class="main-menu">
+            <li class="active"><a href="/">FROOQTI | OVOSZCHI</a></li>
+            <li><a href="#second">О магазине</a></li>
+
+            {{#if users}}
+
+            <li class="menu-children">
+                <a>
+                  {{#each users}}
+                    {{this.login}}
+                  {{/each}}
+                </a>
+                <ul>
+                    <li><a href="/bin">Корзина</a></li>
+                    <li><a href="/clear-cookie">Выйти</a></li>
+                </ul>
+            </li>
+
+            {{else}}
+
+            <li><a href="/signin">Войти</a></li>
+
+            {{/if}}
+    </ul>
+  </header>
+
+    <div class="tape">
+      <ul class="ul-width">
+          <li>
+              <a href="/items?name=1"><img src="images/apples.jpg"></a>
+          </li>
+          <li>
+              <a href="/items?name=2"><img src="images/citruses.jpg"></a>
+          </li>
+          <li>
+              <a href="/items?name=3"><img src="images/look.jpg"></a>
+          </li>
+          <li>
+              <a href="/items?name=4"><img src="images/sekerin.jpg"></a>
+          </li>
+      </ul>
+    </div>
+
+    <div id="second">
+      <div><img src="images/logo_v1.png"></div>
+      <div class="text">FROOQTI | OVOSZCHI - проект,
+        призванный победить голод. Возьми вкусных яблок и попей пива с Секериным!
+        (Пиво в стоимость не входит)</div>
+    </div>
+
+  <footer id="#footer">
+      HCI NSU <br> 2021.
+  </footer>
+
+</body>
+</html>

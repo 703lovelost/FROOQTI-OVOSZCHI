@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <link href="css.css" rel="stylesheet" type="text/css">
+</head>
+<body id="itembody">
+    <header>
+      <ul class="main-menu">
+              <li class="active"><a href="/">FROOQTI | OVOSZCHI</a></li>
+
+              {{#if users}}
+
+              <li class="menu-children">
+                  <a>
+                    {{#each users}}
+                      {{this.login}}
+                    {{/each}}
+                  </a>
+                  <ul>
+                      <li><a href="/bin">Корзина</a></li>
+                      <li><a href="/clear-cookie">Выйти</a></li>
+                  </ul>
+              </li>
+
+              {{else}}
+
+              <li><a href="/signin">Войти</a></li>
+
+              {{/if}}
+      </ul>
+    </header>
+
+    <div class="itemmain">
+
+      {{#if id}}
+        <div class="widget">
+            <h3>Категории</h3>
+            <ul>
+              <li><a href="/items?name=1">Яблоки</a></li>
+              <li><a href="/items?name=2">Цитрусы</a></li>
+              <li><a href="/items?name=3">Лук</a></li>
+              <li><a href="/items?name=4">Валентин Секерин</a></li>
+            </ul>
+        </div>
+
+        <div class="itemrow">
+            {{#each id}}
+                <form action="/items?item={{this.item_id}}" method="post">
+                  <div class="product-item">
+                    <img src="{{this.photo}}">
+                    <div class="product-list">
+                        <h3>{{this.name}}</h3>
+                        <span class="price">{{this.price}}₽ / кг</span>
+                        <div class="number">
+                          	<button class="number-minus" type="button" onclick="this.nextElementSibling.stepDown(); this.nextElementSibling.onchange();">-</button>
+                          	<input type="number" name="amount" step="0.5" min="0.5" max="15" value="0.5" readonly>
+                          	<button class="number-plus" type="button" onclick="this.previousElementSibling.stepUp(); this.previousElementSibling.onchange();">+</button>
+                        </div>
+                        <div>
+                            <input type="submit" class="item-button" name="add" value="В корзину" />
+                        </div>
+                    </div>
+                  </div>
+                </form>
+            {{/each}}
+          </div>
+
+      {{else}}
+
+          {{#if bin}}
+
+          <div class="widget">
+              <div><h3>Корзина</h3></div>
+              <div><button class="buybin" type="button" onclick="location.href='/buy_bin'">Купить все</button></div>
+              <div class="bin">
+                {{#each bin}}
+                  <p>{{this.item_name}}</p>
+                  <span>{{this.price}}x{{this.amount}} = {{this.finalprice}}₽</span>
+                {{/each}}
+              </div>
+              <!--<input type="submit" class="item-button" name="add" value="Купить все" />-->
+          </div>
+
+              <div class="itemrow">
+                  {{#each bin}}
+                    <form action="/bin?item={{this.id}}" method="post">
+                      <div class="product-item">
+                        <img src="{{this.photo}}">
+                        <div class="product-list">
+                            <h3>{{this.item_name}}</h3>
+                            <span class="price">{{this.price}}₽</span>
+                            <div class="number">
+                              	<button class="number-minus" type="button">-</button>
+                              	<input type="number" name="amount" step="0.5" min="0.5" max="15" value="{{this.amount}}" readonly>
+                              	<button class="number-plus" type="button">+</button>
+                            </div>
+                            <div>
+                                <input type="submit" class="item-button" name="add" value="Купить" />
+                            </div>
+                        </div>
+                      </div>
+                    </form>
+                  {{/each}}
+              </div>
+
+          {{else}}
+
+          <div class="widget">
+              <h3>Корзина</h3>
+          </div>
+
+              <div class="itemrow">
+                  На данный момент в корзине пусто.
+              </div>
+
+         {{/if}}
+      {{/if}}
+</div>
+
+    <footer id="#footer">
+        HCI NSU <br> 2021.
+    </footer>
+
+</body>
+</html>

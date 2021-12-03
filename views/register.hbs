@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Регистрация</title>
+    <meta charset="utf-8" />
+    <link href="css.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+  <header>
+    <ul class="main-menu">
+            <li class="active"><a href="/">FROOQTI | OVOSZCHI</a></li>
+
+            {{#if users}}
+
+            <li class="menu-children">
+                <a>
+                  {{#each users}}
+                    {{this.login}}
+                  {{/each}}
+                </a>
+                <ul>
+                    <li><a href="/">bin</a></li>
+                    <li><a href="/clear-cookie">logout</a></li>
+                </ul>
+            </li>
+
+            {{else}}
+
+            <li><a href="/signin">Войти</a></li>
+
+            {{/if}}
+    </ul>
+  </header>
+
+    <div class="form_auth_block">
+        <div class="form_auth_block_content">
+          <p class="form_auth_block_head_text">Регистрация</p>
+          <form class="form_auth_style" action="/register" method="post">
+            <label>Логин</label>
+            <input type="login" name="login" placeholder="Введите логин" required >
+            <label>Пароль</label>
+            <input type="password" name="pass" placeholder="Введите пароль" required >
+            <!--<label>Повторите пароль</label>
+            <input type="password" name="passrepeat" placeholder="Повторите пароль" required >-->
+            <button class="form_auth_button" type="submit" name="form_auth_submit">Зарегистрироваться</button>
+          </form>
+        </div>
+    </div>
+
+    <footer>
+        HCI NSU <br> 2021.
+    </footer>
+</body>
+</html>
